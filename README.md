@@ -33,7 +33,7 @@ assess_answer(constant_speed)
 This answer uses 132 points, so it's going to take a while for the robots execute all of those points. I'm pretty sure I said we want really fast robots, so this answer isn't great and is far from optimal. 
 
 ## The Assessment
-- Feel free to look at the guts of eval_curve() for insight, but a good solution here should be generally curve agnostic. You are encouraged to document your assumptions about the types of curves that your solution works for. 
+- The main goal of this assignment is to discover the smallest list of parameters for the curve described in eval_curve(). Feel free to look at the guts of eval_curve() for insight, but a good solution not only work for the curve I've provided, but also be generally curve agnostic. You are encouraged to document your assumptions about the types of additional curves that your solution could work for. 
 
 - I'm going to be looking for methodical strategy, performant algorithms, and general code quality in addition to the fastest/shortest array of parameters that you can find.
 
