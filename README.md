@@ -11,12 +11,13 @@ Here is one of our robots moving at ~10ft/sec for inspiration:
 ![i_am_speed](i_am_speed.gif?raw=True)
 
 Check out our [website](https://www.machinalabs.ai/home/) for more context on out process
+
 While definitely not required, consider looking up parametrized curves and robot trajectory planning if you are totally new to this space. 
 
 ## The Contraints
 I know what you're thinking: just put one point at the beginning of the curve, and one point at the end. Two points wont take very long to execute, right? And while that is the fastest we could "interpret" a curve, there are some constraints that you should know about:
-- We must start and end with a speed of 0. Velocity is calculated by subtracting each point from its neighbor (np.diff) and speed is just the magnitude of that resulting vector (np.linalg.norm).  
-- We must not exceed a discrete cartesian acceleration magnitude(length/time^2). Acceleration is calculated by subtracting each point from its neighbor (np.diff again), subtracting neighboring velocity vectors (np.diff) to get acceleration vecetors, and finally taking the magnitude of those vectors for acceleration magnitude (np.linalg.norm).   
+- We must start and end with a speed of 0. See how this is calculated in assess_answer(). 
+- We must not exceed a discrete cartesian acceleration magnitude (length/time^2) of 0.1. See how this is calculated in assess_answer(). 
 - The section of path is represented as a a parametrized curve. We must start at the curve parameter of 0 and end at the parameter of 1.
 
 
