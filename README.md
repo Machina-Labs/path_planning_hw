@@ -2,10 +2,9 @@
 Written by: Scott Mackinlay
 
 ## The Context
-Here at Machina, we use giant robots to bend and fold metal into all sorts of different shapes. To do that, we need to supply our robots with a list of points to execute. The robots run through those points, executing one commanded point per fixed time step. This means that the time to complete a path of points is directly proportional to the number of points in that path. 
+Here at Machina, we use giant robots to bend and fold metal into all sorts of different shapes. To do that, we need to supply our robots with a path, in form of a list of co-ordinate points, to travel through. The robots run through those points, moving from one point to the next, each in a fixed time step. This means that the time to complete a path of points is directly proportional to the number of points in that path. Because fast robots help us form more parts, we need to go fast. Real fast! 
 
-
-Because fast robots are cool (and help us form more parts), we need to go fast. Real fast. I've got a parametrized curve that represents a section of a path, and we need to know how quickly we can get the robots to execute that curve. 
+I've got a parametrized curve that represents a section of a path, and we need to know how quickly we can get the robots to execute that curve. 
 
 Here is one of our robots moving at ~10ft/sec for inspiration:
 ![i_am_speed](i_am_speed.gif?raw=True)
@@ -15,13 +14,12 @@ Check out our [website](https://www.machinalabs.ai/home/) for more context on ou
 While definitely not required, consider looking up parametrized curves and robot trajectory planning if you are totally new to this space. 
 
 ## The Contraints
-I know what you're thinking: just put one point at the beginning of the curve, and one point at the end. Two points wont take very long to execute, right? And while that is the fastest we could "interpret" a curve, there are some constraints that you should know about:
+In theory, providing just two points - the starting and ending coordinates, would allow the robot to complete the path in least amount of time. However, there are some constraints that you should know about:
 - We must start and end with a speed of 0. See how this is calculated in assess_answer(). 
 - We must not exceed a discrete cartesian acceleration magnitude (length/time^2) of 0.1. See how this is calculated in assess_answer(). 
 - The section of path is represented as a a parametrized curve. We must start at the curve parameter of 0 and end at the parameter of 1.
 
-
-I've written two functions to help you get going: eval_curve() and assess_answer(). You'll find these in eval_tools.py. assess_answer() will check your submission against these (and other) constraints and tell ya how you're doing. eval_curve() represents the parametrized curve that I want you to design your answer for; read its documentation if you have questions. 
+I've written two functions - eval_curve() and assess_answer(), as part of this assignment. You'll find these in eval_tools.py. eval_curve() generates the parametrized curve (path) by using the set of parameters you provide it as input. assess_answer() will check your submission against the above-mentioned constraints and others to assess the quality of your answer. 
 
  ## The Ask
 What I want is an array of parameters that pass the checks in assess_answer(). Here is an example submission:
@@ -33,7 +31,7 @@ constant_speed = np.concatenate(([0], np.linspace(0, 1, 130), [1]))
 assess_answer(constant_speed)
 ```
 
-This answer uses 132 points, so it's going to take a while for the robots execute all of those points. I'm pretty sure I said we want really fast robots, so this answer isn't great and is far from optimal. 
+This answer uses 132 points, so it's going to take a while for the robots execute all of those points. Since we want really fast robots this answer isn't great and is far from optimal. 
 
 ## The Assessment
 - The main goal of this assignment is to give me the shortest array of parameters that you can find that pass the checks in assess_answer() for the specific curve described in eval_curve(). 
